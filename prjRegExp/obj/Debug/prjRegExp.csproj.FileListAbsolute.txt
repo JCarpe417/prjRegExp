@@ -1,0 +1,9 @@
+c:\users\james\documents\visual studio 2013\Projects\prjRegExp\prjRegExp\bin\Debug\prjRegExp.exe.config
+c:\users\james\documents\visual studio 2013\Projects\prjRegExp\prjRegExp\bin\Debug\prjRegExp.exe
+c:\users\james\documents\visual studio 2013\Projects\prjRegExp\prjRegExp\bin\Debug\prjRegExp.pdb
+c:\users\james\documents\visual studio 2013\Projects\prjRegExp\prjRegExp\obj\Debug\prjRegExp.csprojResolveAssemblyReference.cache
+c:\users\james\documents\visual studio 2013\Projects\prjRegExp\prjRegExp\obj\Debug\prjRegExp.Form1.resources
+c:\users\james\documents\visual studio 2013\Projects\prjRegExp\prjRegExp\obj\Debug\prjRegExp.Properties.Resources.resources
+c:\users\james\documents\visual studio 2013\Projects\prjRegExp\prjRegExp\obj\Debug\prjRegExp.csproj.GenerateResource.Cache
+c:\users\james\documents\visual studio 2013\Projects\prjRegExp\prjRegExp\obj\Debug\prjRegExp.exe
+c:\users\james\documents\visual studio 2013\Projects\prjRegExp\prjRegExp\obj\Debug\prjRegExp.pdb
