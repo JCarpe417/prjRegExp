@@ -12,20 +12,29 @@ using System.IO;
 
 namespace prjRegExp
 {
-    /*===============================================================
-     | Creator: James Carpenter (jcarpe417@gmail.com)                |
-     | Project: Regular Expression Tester across different mediums   |
-      ===============================================================*/
+    /*=====================================================================
+     | Creator: James Carpenter (jcarpe417@gmail.com)                      |
+     | Project: Regular Expression Tester across a few different mediums   |
+      =====================================================================*/
 
-    public partial class Form1 : Form
+    public partial class frmRegExTester : Form
     {
-        public Form1()
+        public frmRegExTester()
         {
             InitializeComponent();
         }
 
-        //boolean function to test for an empty regex
-        private bool isExp() { if (this.txtRegExp.Text == "") return false; else return true; }
+        //little function to check txtRegEx.Text's value; 
+        //note: will only fire off messagebox if first check is true
+        private bool checkExp() 
+        {
+            if (this.txtRegEx.Text == "")
+            {
+                MessageBox.Show("Please enter a valid value in the textbox labeled 'RegEx to Test'", "Error");
+                return false;
+            }
+            else return true; 
+        }
 
         private void btnTest_MouseDown(object sender, MouseEventArgs e)
         {
@@ -38,7 +47,7 @@ namespace prjRegExp
             //clear everything user has entered and results from regexes
             this.txtText.Clear();
             this.txtBlock.Clear();
-            this.txtRegExp.Clear();
+            this.txtRegEx.Clear();
             this.lstResults.Items.Clear();
             this.lblMatches.Text = "(0)";
             this.txtText.Focus();
@@ -46,22 +55,26 @@ namespace prjRegExp
 
         private void mnuSingle_Click(object sender, EventArgs e)
         {
-            //if there's no expression, exit procedure
-            if (!this.isExp()) { return; }
+            //if txtText.Text is empty or txtRegEx.Text is empty, do this...
+            if (this.txtText.Text == "" || this.checkExp()) 
+            {
+                MessageBox.Show("Please enter a valid value in the textbox labeled 'Text to Test'", "Error");
+                return;
+            }
 
             //str: string used to test with the regex
-            //regExp: string representation of a regex pattern
+            //regEx: string representation of a regex pattern
             string str = this.txtText.Text;
-            string regExp = this.txtRegExp.Text;
+            string regEx = this.txtRegEx.Text;
 
             //matches: collection of matches generated from the regex test
-            MatchCollection matches = new Regex(regExp).Matches(str);
+            MatchCollection matches = new Regex(regEx).Matches(str);
 
             //no matches turned up, do this...
             if (matches.Count < 1)
             {
                 //inform the user, then exit procedure
-                MessageBox.Show("No matches came from the expression: " + regExp, "Error");
+                MessageBox.Show("No matches came from the expression: " + regEx, "Error");
                 return;
             }
 
@@ -78,8 +91,11 @@ namespace prjRegExp
 
         private void mnuFile_Click(object sender, EventArgs e)
         {
-            //if there's no expression, exit procedure
-            if (!this.isExp()) { return; }
+            //if txtRegEx.Text is empty, do this...
+            if (this.checkExp()) 
+            {
+                return; 
+            }
 
             //create new file select dialog object to select a file
             OpenFileDialog ofd = new OpenFileDialog();
@@ -89,7 +105,7 @@ namespace prjRegExp
             {
                 //regex: regex pattern to use for testing
                 //sr: streamreader object set to file chosen by user
-                Regex regex = new Regex(this.txtRegExp.Text);
+                Regex regex = new Regex(this.txtRegEx.Text);
                 StreamReader sr = new StreamReader(ofd.FileName);
 
                 //until EOF is reached, do this...
@@ -115,11 +131,15 @@ namespace prjRegExp
 
         private void mnuBlock_Click(object sender, EventArgs e)
         {
-            //if there's no expression, exit procedure
-            if (!this.isExp()) { return; }
+            //if txtBlock.Text is empty or txtRegEx.Text is empty, do this...
+            if (this.txtBlock.Text == "" || this.checkExp())
+            {
+                MessageBox.Show("Please enter a valid value in the textbox labeled 'Block to Test'", "Error");
+                return;
+            }
 
             //regex: regex pattern to use for testing
-            Regex regex = new Regex(this.txtRegExp.Text);
+            Regex regex = new Regex(this.txtRegEx.Text);
 
             //for each line in txtBlock.Lines collection, do this...
             foreach (string line in this.txtBlock.Lines)
@@ -139,7 +159,7 @@ namespace prjRegExp
             this.lblMatches.Text = this.lstResults.Items.Count.ToString();
         }
 
-        //TODO: This may need adjusting
+        //TODO: This may need adjusting in the future
         private void btnLoad_Click(object sender, EventArgs e)
         {
             //create new file select dialog and set filter property for .txt and .csv files
@@ -149,18 +169,18 @@ namespace prjRegExp
             //user chose a file and clicked open
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                //sr: streamreader object set to file chosen by the user
+                StreamReader sr = new StreamReader(ofd.FileName);
+
                 //which file type was selected?
                 switch (ofd.FilterIndex)
                 { 
                     //text file selected
                     case 1:
-                        //sr: streamreader object set to file chosen by the user
-                        StreamReader sr = new StreamReader(ofd.FileName);
-
                         //until EOF is reached, do this...
                         while (sr.Peek() != -1)
                         {
-                            //read sr line by line and update txtBlock.Text accordingly
+                            //read sr line by line and update txtBlock.Text accordingly (subsequently appending values to txtBlock.Lines array)
                             this.txtBlock.Text += sr.ReadLine() + Environment.NewLine;
                         }
 
@@ -170,25 +190,22 @@ namespace prjRegExp
                     
                     //csv file selected
                     case 2:
-                        //stream: streamreader object set to file chosen by user
-                        StreamReader stream = new StreamReader(ofd.FileName);
-
                         //until EOF is reached, do this...
-                        while (stream.Peek() != -1)
+                        while (sr.Peek() != -1)
                         {
                             //split lines into strings seperated by commas
-                            string[] strs = stream.ReadLine().Split(',');
+                            string[] strs = sr.ReadLine().Split(',');
 
-                            //for each string in the array
+                            //for each string in the array, do this...
                             foreach (string s in strs)
                             {
-                                //update txtBlock.Text accordingly
+                                //update txtBlock.Text accordingly (subsequently appending values to txtBlock.Lines array)
                                 this.txtBlock.Text += s + Environment.NewLine;
                             }
                         }
 
                         //properly release streamreader object
-                        stream.Close();
+                        sr.Close();
                         break;
                 }
             }

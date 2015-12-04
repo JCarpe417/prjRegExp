@@ -1,6 +1,6 @@
 ﻿namespace prjRegExp
 {
-    partial class Form1
+    partial class frmRegExTester
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@
             this.txtText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtRegExp = new System.Windows.Forms.TextBox();
+            this.txtRegEx = new System.Windows.Forms.TextBox();
             this.lstResults = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnTest = new System.Windows.Forms.Button();
@@ -67,18 +67,18 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 132);
+            this.label2.Location = new System.Drawing.Point(12, 132);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 13);
+            this.label2.Size = new System.Drawing.Size(81, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "RegExp to Test: ";
+            this.label2.Text = "RegEx to Test: ";
             // 
-            // txtRegExp
+            // txtRegEx
             // 
-            this.txtRegExp.Location = new System.Drawing.Point(101, 129);
-            this.txtRegExp.Name = "txtRegExp";
-            this.txtRegExp.Size = new System.Drawing.Size(426, 20);
-            this.txtRegExp.TabIndex = 3;
+            this.txtRegEx.Location = new System.Drawing.Point(101, 129);
+            this.txtRegEx.Name = "txtRegEx";
+            this.txtRegEx.Size = new System.Drawing.Size(426, 20);
+            this.txtRegEx.TabIndex = 3;
             // 
             // lstResults
             // 
@@ -184,7 +184,7 @@
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
-            // Form1
+            // frmRegExTester
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -197,11 +197,11 @@
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lstResults);
-            this.Controls.Add(this.txtRegExp);
+            this.Controls.Add(this.txtRegEx);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtText);
-            this.Name = "Form1";
+            this.Name = "frmRegExTester";
             this.Text = "Regular Expression Tester";
             this.mnuTest.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -214,7 +214,7 @@
         private System.Windows.Forms.TextBox txtText;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtRegExp;
+        private System.Windows.Forms.TextBox txtRegEx;
         private System.Windows.Forms.ListBox lstResults;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnTest;
